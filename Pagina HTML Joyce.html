@@ -1,0 +1,1479 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f6f1e6" />
+  <title>Letras & Letras — Aulas particulares de Português e Redação</title>
+  <meta name="description" content="Plataforma de aulas particulares de Português e técnica em redação: diagnóstico, plano de estudo, correção por critérios e encontros ao vivo." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300,400,600,700&family=Manrope:wght@300,400,500,600,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Editorial / warm academic */
+      --bg: #f6f1e6;
+      --bg2:#efe6d6;
+      --paper:#fbf7ef;
+      --ink:#1b1b1a;
+      --muted:#53504a;
+      --muted2:#6a655b;
+
+      --accent:#0f6b5f;      /* verde profundo */
+      --accent2:#b33a2b;     /* vermelho tijolo */
+      --accent3:#7b4ce3;     /* roxo discreto p/ detalhes */
+      --line: rgba(27,27,26,.16);
+
+      --shadow: 0 18px 40px rgba(21, 18, 14, .12);
+      --shadow2: 0 10px 26px rgba(21, 18, 14, .10);
+      --radius: 18px;
+      --radius2: 26px;
+
+      --max: 1160px;
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% 0%, rgba(15,107,95,.10), transparent 55%),
+        radial-gradient(900px 520px at 90% 10%, rgba(179,58,43,.10), transparent 55%),
+        radial-gradient(900px 520px at 55% 95%, rgba(123,76,227,.09), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", sans-serif;
+      line-height:1.35;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px;}
+    .sr{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+
+    /* Subtle paper grain */
+    .grain{
+      pointer-events:none;
+      position:fixed; inset:0;
+      opacity:.12;
+      mix-blend-mode:multiply;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      background-size:220px 220px;
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(246,241,230,.68);
+      border-bottom:1px solid rgba(27,27,26,.10);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
+      text-decoration:none;
+    }
+    .mark{
+      width:38px; height:38px; border-radius:12px;
+      background:
+        radial-gradient(14px 14px at 30% 30%, rgba(255,255,255,.85), transparent 55%),
+        conic-gradient(from 210deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
+      box-shadow: 0 10px 18px rgba(0,0,0,.10);
+      position:relative;
+      overflow:hidden;
+    }
+    .mark:after{
+      content:"";
+      position:absolute; inset:-40% -40%;
+      background:
+        repeating-linear-gradient(135deg, rgba(255,255,255,.15) 0 7px, rgba(255,255,255,0) 7px 14px);
+      transform: rotate(10deg);
+      opacity:.6;
+    }
+    .brand .name{
+      display:flex; flex-direction:column; line-height:1.05;
+    }
+    .brand strong{
+      font-family:"Fraunces", serif;
+      font-weight:700;
+      letter-spacing:.2px;
+      font-size:16px;
+    }
+    .brand span{
+      font-size:12px;
+      color:var(--muted2);
+      letter-spacing:.4px;
+    }
+
+    nav ul{
+      list-style:none; margin:0; padding:0;
+      display:flex; gap:18px; align-items:center;
+    }
+    nav a{
+      text-decoration:none;
+      font-size:13px;
+      color:rgba(27,27,26,.78);
+      letter-spacing:.3px;
+      padding:8px 10px;
+      border-radius:999px;
+      transition: background .25s var(--ease), transform .25s var(--ease), color .25s var(--ease);
+      outline: none;
+    }
+    nav a:hover, nav a:focus-visible{
+      background: rgba(15,107,95,.10);
+      color: rgba(27,27,26,.92);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta{
+      display:flex; gap:10px; align-items:center;
+    }
+    .btn{
+      appearance:none; border:1px solid rgba(27,27,26,.18);
+      background: rgba(251,247,239,.72);
+      color: var(--ink);
+      padding:10px 12px;
+      border-radius: 999px;
+      font-weight:650;
+      letter-spacing:.2px;
+      font-size:13px;
+      display:inline-flex; align-items:center; gap:10px;
+      cursor:pointer;
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease), background .22s var(--ease), border-color .22s var(--ease);
+      box-shadow: 0 10px 18px rgba(0,0,0,.06);
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: 0 16px 30px rgba(0,0,0,.10)}
+    .btn:active{transform: translateY(0px) scale(.99)}
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(15,107,95,.95), rgba(15,107,95,.82));
+      border-color: rgba(15,107,95,.30);
+      color: #fff;
+      box-shadow: 0 16px 32px rgba(15,107,95,.22);
+    }
+    .btn.primary:hover{box-shadow: 0 22px 42px rgba(15,107,95,.30)}
+    .btn .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: currentColor;
+      opacity:.9;
+      box-shadow: 0 0 0 6px rgba(255,255,255,.12);
+    }
+    .btn.primary .dot{background: #fff; box-shadow: 0 0 0 6px rgba(255,255,255,.14)}
+
+    .menuBtn{display:none}
+
+    /* Hero */
+    main{position:relative}
+    .hero{
+      padding: 44px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 28px;
+      align-items:stretch;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(27,27,26,.14);
+      background: rgba(251,247,239,.70);
+      font-size:12px;
+      letter-spacing:.35px;
+      color: rgba(27,27,26,.82);
+      box-shadow: 0 12px 22px rgba(0,0,0,.06);
+    }
+    .badge i{
+      width:9px; height:9px; border-radius:999px;
+      background: var(--accent2);
+      box-shadow: 0 0 0 6px rgba(179,58,43,.12);
+    }
+
+    h1{
+      font-family:"Fraunces", serif;
+      font-weight: 700;
+      letter-spacing: -0.6px;
+      font-size: clamp(34px, 4.1vw, 56px);
+      line-height: 1.02;
+      margin: 14px 0 12px;
+    }
+    .lead{
+      font-size: clamp(15px, 1.5vw, 18px);
+      color: rgba(27,27,26,.76);
+      max-width: 56ch;
+      margin: 0 0 18px;
+    }
+
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 14px;
+    }
+
+    .mini-metrics{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+      max-width: 520px;
+    }
+    .metric{
+      padding: 12px 12px;
+      border-radius: 16px;
+      background: rgba(251,247,239,.66);
+      border: 1px solid rgba(27,27,26,.14);
+      box-shadow: var(--shadow2);
+    }
+    .metric strong{
+      font-family:"Fraunces", serif;
+      font-size: 18px;
+      letter-spacing:.2px;
+      display:block;
+    }
+    .metric span{
+      color: rgba(27,27,26,.66);
+      font-size: 12px;
+      letter-spacing:.3px;
+    }
+
+    /* Right panel: "interactive correction" */
+    .panel{
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(251,247,239,.74), rgba(251,247,239,.58));
+      border:1px solid rgba(27,27,26,.16);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      min-height: 430px;
+    }
+    .panel:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(520px 220px at 20% 10%, rgba(15,107,95,.18), transparent 55%),
+        radial-gradient(420px 240px at 90% 20%, rgba(179,58,43,.18), transparent 58%),
+        radial-gradient(420px 240px at 70% 95%, rgba(123,76,227,.14), transparent 56%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .panel-inner{
+      position:relative;
+      padding: 18px 18px 16px;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
+    .panel-top{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+    }
+    .panel-title{
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .panel-title strong{
+      font-family:"Fraunces", serif;
+      letter-spacing:-.2px;
+      font-size: 18px;
+    }
+    .panel-title span{
+      font-size: 12px;
+      color: rgba(27,27,26,.70);
+      letter-spacing:.3px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(15,107,95,.10);
+      border: 1px solid rgba(15,107,95,.18);
+      color: rgba(27,27,26,.86);
+      font-weight: 650;
+      font-size: 12px;
+      letter-spacing:.25px;
+      white-space:nowrap;
+    }
+    .pill b{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(15,107,95,.12);
+    }
+
+    .editor{
+      border-radius: 18px;
+      background: rgba(251,247,239,.78);
+      border: 1px solid rgba(27,27,26,.16);
+      overflow:hidden;
+      box-shadow: 0 16px 32px rgba(0,0,0,.08);
+    }
+    .editor-head{
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(27,27,26,.14);
+      background: rgba(246,241,230,.55);
+    }
+    .tabs{display:flex; gap:8px; align-items:center}
+    .tab{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(27,27,26,.14);
+      background: rgba(251,247,239,.65);
+      color: rgba(27,27,26,.78);
+      cursor:pointer;
+      transition: transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+    }
+    .tab[aria-selected="true"]{
+      background: rgba(179,58,43,.12);
+      border-color: rgba(179,58,43,.22);
+      color: rgba(27,27,26,.90);
+    }
+    .tab:hover{transform: translateY(-1px)}
+    .editor-body{
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .textarea{
+      width:100%;
+      min-height: 170px;
+      resize:none;
+      border-radius: 14px;
+      border: 1px solid rgba(27,27,26,.16);
+      background: rgba(251,247,239,.85);
+      padding: 12px 12px;
+      font: 500 13px/1.45 "Manrope", sans-serif;
+      color: rgba(27,27,26,.90);
+      outline:none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+    }
+    .textarea:focus{
+      border-color: rgba(15,107,95,.35);
+      box-shadow: 0 0 0 5px rgba(15,107,95,.12), inset 0 1px 0 rgba(255,255,255,.6);
+    }
+
+    .feedback{
+      border-radius: 14px;
+      border: 1px dashed rgba(27,27,26,.22);
+      background: rgba(246,241,230,.55);
+      padding: 10px 12px;
+    }
+    .feedback h3{
+      margin:0 0 6px;
+      font-family:"Fraunces", serif;
+      font-size: 14px;
+      letter-spacing:.1px;
+    }
+    .feedback ul{margin:0; padding-left: 18px; color: rgba(27,27,26,.78); font-size: 12.5px}
+    .feedback li{margin: 5px 0}
+
+    .panel-foot{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:auto;
+      padding-top: 2px;
+    }
+    .smallnote{
+      color: rgba(27,27,26,.68);
+      font-size: 12px;
+      letter-spacing:.2px;
+    }
+
+    /* Sections */
+    section{
+      padding: 42px 0;
+    }
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(27,27,26,.12);
+      margin-bottom: 18px;
+    }
+    .section-title h2{
+      margin:0;
+      font-family:"Fraunces", serif;
+      font-size: clamp(22px, 2.2vw, 30px);
+      letter-spacing: -.3px;
+      line-height:1.08;
+    }
+    .section-title p{
+      margin:0;
+      color: rgba(27,27,26,.72);
+      max-width: 62ch;
+      font-size: 14px;
+    }
+
+    /* Method layout: no cards, editorial columns */
+    .method{
+      display:grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 22px;
+      align-items:start;
+    }
+    .method aside{
+      border-radius: var(--radius2);
+      background: rgba(251,247,239,.62);
+      border: 1px solid rgba(27,27,26,.14);
+      box-shadow: var(--shadow2);
+      padding: 18px;
+      position:sticky;
+      top: 78px;
+    }
+    .method aside h3{
+      margin:0 0 10px;
+      font-family:"Fraunces", serif;
+      letter-spacing:-.2px;
+      font-size: 18px;
+    }
+    .checklist{
+      list-style:none; margin:0; padding:0;
+      display:grid; gap:10px;
+    }
+    .checklist li{
+      display:flex; gap:10px; align-items:flex-start;
+      color: rgba(27,27,26,.78);
+      font-size: 13px;
+    }
+    .tick{
+      width:18px; height:18px; border-radius: 6px;
+      background: rgba(15,107,95,.12);
+      border:1px solid rgba(15,107,95,.20);
+      position:relative; flex: 0 0 18px;
+      margin-top: 1px;
+    }
+    .tick:after{
+      content:"";
+      position:absolute; left:5px; top:3px;
+      width:6px; height:9px;
+      border-right:2px solid var(--accent);
+      border-bottom:2px solid var(--accent);
+      transform: rotate(40deg);
+    }
+
+    .steps{
+      display:grid;
+      gap: 14px;
+    }
+    .step{
+      padding: 16px 16px;
+      border-radius: var(--radius);
+      background: rgba(251,247,239,.70);
+      border: 1px solid rgba(27,27,26,.14);
+      box-shadow: var(--shadow2);
+      position:relative;
+      overflow:hidden;
+    }
+    .step:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        linear-gradient(90deg, rgba(15,107,95,.12), transparent 55%),
+        radial-gradient(480px 180px at 0% 0%, rgba(179,58,43,.12), transparent 55%);
+      opacity:.65;
+      pointer-events:none;
+    }
+    .step > *{position:relative}
+    .step header{
+      position:static;
+      backdrop-filter:none;
+      background: transparent;
+      border:0;
+    }
+    .step h3{
+      margin:0;
+      font-family:"Fraunces", serif;
+      font-size: 18px;
+      letter-spacing:-.2px;
+    }
+    .step p{
+      margin: 8px 0 0;
+      color: rgba(27,27,26,.74);
+      font-size: 14px;
+      max-width: 80ch;
+    }
+    .step .meta{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top: 10px;
+      color: rgba(27,27,26,.72);
+      font-size: 12px;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(27,27,26,.14);
+      background: rgba(246,241,230,.55);
+    }
+    .chip i{
+      width:7px; height:7px; border-radius:999px;
+      background: var(--accent2);
+      box-shadow: 0 0 0 6px rgba(179,58,43,.10);
+    }
+
+    /* Plans: table-like, not card grid */
+    .plans{
+      border-radius: var(--radius2);
+      overflow:hidden;
+      border:1px solid rgba(27,27,26,.14);
+      background: rgba(251,247,239,.62);
+      box-shadow: var(--shadow);
+    }
+    .plans-head{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap:0;
+      border-bottom:1px solid rgba(27,27,26,.14);
+      background: rgba(246,241,230,.55);
+    }
+    .plans-head div{
+      padding: 16px 16px;
+    }
+    .plans-head strong{
+      font-family:"Fraunces", serif;
+      font-size: 16px;
+      letter-spacing:-.2px;
+    }
+    .plans-head p{
+      margin:6px 0 0;
+      color: rgba(27,27,26,.72);
+      font-size: 13px;
+      max-width: 38ch;
+    }
+
+    .plans-body{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+    }
+    .row{
+      display:contents;
+    }
+    .cell{
+      padding: 14px 16px;
+      border-bottom:1px solid rgba(27,27,26,.10);
+    }
+    .cell:nth-child(3n+2), .cell:nth-child(3n+3){
+      border-left:1px solid rgba(27,27,26,.10);
+    }
+    .feat{
+      color: rgba(27,27,26,.80);
+      font-weight:650;
+      letter-spacing:.15px;
+      font-size: 13px;
+    }
+    .val{
+      color: rgba(27,27,26,.76);
+      font-size: 13px;
+    }
+    .val b{color: rgba(27,27,26,.90)}
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(15,107,95,.18);
+      background: rgba(15,107,95,.10);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing:.25px;
+      color: rgba(27,27,26,.88);
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    /* Booking */
+    .booking{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+      align-items:start;
+    }
+    .form{
+      border-radius: var(--radius2);
+      border:1px solid rgba(27,27,26,.14);
+      background: rgba(251,247,239,.68);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .form-head{
+      padding: 16px 18px;
+      border-bottom:1px solid rgba(27,27,26,.12);
+      background: rgba(246,241,230,.52);
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 10px;
+    }
+    .form-head h3{
+      margin:0;
+      font-family:"Fraunces", serif;
+      letter-spacing:-.2px;
+      font-size: 18px;
+      line-height:1.1;
+    }
+    .form-head p{
+      margin:6px 0 0;
+      color: rgba(27,27,26,.72);
+      font-size: 13px;
+      max-width: 62ch;
+    }
+    form{
+      padding: 16px 18px 18px;
+      display:grid;
+      gap: 12px;
+    }
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    label{
+      display:block;
+      font-size: 12px;
+      letter-spacing:.3px;
+      color: rgba(27,27,26,.72);
+      margin-bottom: 6px;
+    }
+    input, select, textarea{
+      width:100%;
+      border-radius: 14px;
+      border: 1px solid rgba(27,27,26,.16);
+      background: rgba(251,247,239,.86);
+      padding: 11px 12px;
+      font: 500 13px/1.2 "Manrope", sans-serif;
+      color: rgba(27,27,26,.90);
+      outline:none;
+      transition: box-shadow .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease);
+    }
+    textarea{min-height: 110px; resize: vertical; line-height:1.45}
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(179,58,43,.32);
+      box-shadow: 0 0 0 5px rgba(179,58,43,.12);
+    }
+    .form-actions{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      padding-top: 2px;
+    }
+
+    .side{
+      border-radius: var(--radius2);
+      border:1px solid rgba(27,27,26,.14);
+      background: rgba(251,247,239,.62);
+      box-shadow: var(--shadow2);
+      padding: 16px 16px;
+      position:sticky;
+      top: 88px;
+    }
+    .side h3{
+      margin:0 0 10px;
+      font-family:"Fraunces", serif;
+      letter-spacing:-.2px;
+      font-size: 18px;
+    }
+    .faq{
+      display:grid; gap: 10px;
+    }
+    details{
+      border-radius: 16px;
+      border:1px solid rgba(27,27,26,.14);
+      background: rgba(246,241,230,.52);
+      padding: 10px 12px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 700;
+      letter-spacing:.2px;
+      color: rgba(27,27,26,.86);
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{
+      margin: 8px 0 0;
+      color: rgba(27,27,26,.74);
+      font-size: 13px;
+    }
+
+    footer{
+      padding: 36px 0 42px;
+      border-top: 1px solid rgba(27,27,26,.12);
+      background: rgba(246,241,230,.46);
+    }
+    .foot{
+      display:flex; justify-content:space-between; align-items:flex-start; gap: 18px; flex-wrap:wrap;
+    }
+    .foot small{
+      color: rgba(27,27,26,.66);
+      letter-spacing:.2px;
+      display:block;
+      margin-top: 10px;
+      max-width: 65ch;
+    }
+    .foot .links{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+    .linkbtn{
+      border:1px solid rgba(27,27,26,.14);
+      background: rgba(251,247,239,.62);
+      padding: 10px 12px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-weight: 700;
+      font-size: 13px;
+      color: rgba(27,27,26,.86);
+      transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);
+      box-shadow: 0 10px 18px rgba(0,0,0,.06);
+    }
+    .linkbtn:hover{transform: translateY(-1px); box-shadow: 0 16px 30px rgba(0,0,0,.10)}
+    .legal{
+      margin-top: 12px;
+      color: rgba(27,27,26,.58);
+      font-size: 12px;
+      letter-spacing:.2px;
+    }
+
+    /* Reveal */
+    .reveal{opacity:0; transform: translateY(10px); filter: blur(2px)}
+    .reveal.in{opacity:1; transform: translateY(0); filter: blur(0); transition: opacity .7s var(--ease), transform .7s var(--ease), filter .7s var(--ease)}
+    @media (prefers-reduced-motion: reduce){
+      .reveal{opacity:1; transform:none; filter:none}
+      .reveal.in{transition:none}
+      .btn, nav a, .tab{transition:none}
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr; gap: 14px}
+      .panel{min-height: 410px}
+      .method{grid-template-columns: 1fr; }
+      .method aside{position:relative; top:auto}
+      .booking{grid-template-columns: 1fr}
+      .side{position:relative; top:auto}
+      .plans-head, .plans-body{grid-template-columns: 1fr}
+      .plans-head div{border-bottom:1px solid rgba(27,27,26,.12)}
+      .plans-body .cell{border-left:0 !important}
+      .cell{border-bottom:1px solid rgba(27,27,26,.10)}
+    }
+    @media (max-width: 760px){
+      nav ul{display:none}
+      .menuBtn{display:inline-flex}
+      .grid2{grid-template-columns: 1fr}
+      .mini-metrics{grid-template-columns: 1fr 1fr}
+      .nav{padding: 12px 0}
+      .brand{min-width:auto}
+    }
+
+    /* Mobile menu */
+    .mobileMenu{
+      display:none;
+      border-top:1px solid rgba(27,27,26,.10);
+      background: rgba(246,241,230,.74);
+      backdrop-filter: blur(10px);
+    }
+    .mobileMenu.open{display:block}
+    .mobileMenu .wrap{padding: 10px 20px 14px}
+    .mobileMenu a{
+      display:block;
+      padding: 10px 10px;
+      border-radius: 14px;
+      text-decoration:none;
+      color: rgba(27,27,26,.86);
+      border:1px solid rgba(27,27,26,.12);
+      background: rgba(251,247,239,.60);
+      margin: 8px 0;
+      font-weight: 700;
+      letter-spacing:.2px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Letras & Letras — início">
+          <span class="mark" aria-hidden="true"></span>
+          <span class="name">
+            <strong>Letras & Letras</strong>
+            <span>Português • Redação • ENEM • Vestibulares</span>
+          </span>
+        </a>
+
+        <nav aria-label="Navegação principal">
+          <ul>
+            <li><a href="#metodo">Método</a></li>
+            <li><a href="#planos">Planos</a></li>
+            <li><a href="#agendar">Agendar</a></li>
+            <li><a href="#faq">Dúvidas</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <button class="btn menuBtn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">
+            Menu <span class="dot" aria-hidden="true"></span>
+          </button>
+          <a class="btn" href="#agendar">
+            Fazer diagnóstico
+            <span class="dot" aria-hidden="true"></span>
+          </a>
+          <a class="btn primary" href="#agendar">
+            Agendar aula
+            <span class="dot" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobileMenu" id="mobileMenu">
+      <div class="wrap">
+        <a href="#metodo">Método</a>
+        <a href="#planos">Planos</a>
+        <a href="#agendar">Agendar</a>
+        <a href="#faq">Dúvidas</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="badge reveal">
+              <i aria-hidden="true"></i>
+              Plataforma de aulas particulares com foco em escrita de alto desempenho
+            </div>
+
+            <h1 class="reveal" style="animation-delay:.05s">
+              Português e redação com método — do diagnóstico à versão final.
+            </h1>
+
+            <p class="lead reveal" style="animation-delay:.10s">
+              Aulas ao vivo, plano de estudo sob medida e correção criteriosa (ENEM/vestibulares/concursos).
+              Você aprende a <b>argumentar</b>, <b>organizar ideias</b> e <b>escrever com clareza</b>, sem “macetes” frágeis.
+            </p>
+
+            <div class="hero-actions reveal" style="animation-delay:.14s">
+              <a class="btn primary" href="#agendar">
+                <span class="dot" aria-hidden="true"></span>
+                Agendar uma aula experimental
+              </a>
+              <a class="btn" href="#planos">
+                Ver planos e formato
+                <span class="dot" aria-hidden="true"></span>
+              </a>
+              <a class="btn" href="#metodo">
+                Como funciona a correção
+                <span class="dot" aria-hidden="true"></span>
+              </a>
+            </div>
+
+            <div class="mini-metrics reveal" style="animation-delay:.18s">
+              <div class="metric">
+                <strong>1:1</strong>
+                <span>Aula particular (100% personalizada)</span>
+              </div>
+              <div class="metric">
+                <strong>Rubrica</strong>
+                <span>Critérios + comentários objetivos</span>
+              </div>
+              <div class="metric">
+                <strong>Rotina</strong>
+                <span>Metas semanais e revisão guiada</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel reveal" style="animation-delay:.10s">
+            <div class="panel-inner">
+              <div class="panel-top">
+                <div class="panel-title">
+                  <strong>Correção demonstrativa</strong>
+                  <span>Escreva um parágrafo: a plataforma aponta clareza, coesão e precisão.</span>
+                </div>
+                <div class="pill" aria-label="Status: revisão em tempo real">
+                  <b aria-hidden="true"></b> revisão em tempo real
+                </div>
+              </div>
+
+              <div class="editor" role="region" aria-label="Editor e feedback">
+                <div class="editor-head">
+                  <div class="tabs" role="tablist" aria-label="Modos de feedback">
+                    <button class="tab" id="tab-clar" role="tab" aria-selected="true" aria-controls="panel-clar">Clareza</button>
+                    <button class="tab" id="tab-coes" role="tab" aria-selected="false" aria-controls="panel-coes">Coesão</button>
+                    <button class="tab" id="tab-norm" role="tab" aria-selected="false" aria-controls="panel-norm">Norma</button>
+                  </div>
+                  <span class="smallnote" id="scoreLabel">Pontuação: <b id="score">—</b>/10</span>
+                </div>
+
+                <div class="editor-body">
+                  <label class="sr" for="demoText">Escreva um parágrafo de redação</label>
+                  <textarea id="demoText" class="textarea" placeholder="Ex.: A educação midiática deveria ser prioridade nas escolas, pois..."></textarea>
+
+                  <div class="feedback" id="panel-clar" role="tabpanel" aria-labelledby="tab-clar">
+                    <h3>Clareza (o leitor entende de primeira?)</h3>
+                    <ul id="clarList">
+                      <li>Escreva para um leitor real: frase curta + ideia central explícita.</li>
+                      <li>Evite termos vagos (“muito”, “coisa”, “isso”) sem referência.</li>
+                      <li>Prefira verbos fortes (“evidencia”, “sustenta”, “contrasta”).</li>
+                    </ul>
+                  </div>
+
+                  <div class="feedback" id="panel-coes" role="tabpanel" aria-labelledby="tab-coes" hidden>
+                    <h3>Coesão (as ideias se conectam?)</h3>
+                    <ul id="coesList">
+                      <li>Use conectivos com função: causa, contraste, conclusão.</li>
+                      <li>Retome o tópico com sinônimos/hiperônimos (sem repetir).</li>
+                      <li>Evite “saltos”: apresente evidência antes da conclusão.</li>
+                    </ul>
+                  </div>
+
+                  <div class="feedback" id="panel-norm" role="tabpanel" aria-labelledby="tab-norm" hidden>
+                    <h3>Norma (precisão e correção)</h3>
+                    <ul id="normList">
+                      <li>Revise concordância e regência em períodos longos.</li>
+                      <li>Checagem final: vírgulas em orações explicativas e enumerações.</li>
+                      <li>Evite informalidade (“tipo”, “pra”, “a gente” em textos formais).</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-foot">
+                <span class="smallnote">Dica: comece com <b>tese</b> + <b>uma razão</b> + <b>um exemplo</b>.</span>
+                <button class="btn" id="demoFixBtn" type="button">
+                  Sugerir melhoria
+                  <span class="dot" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="metodo">
+      <div class="wrap">
+        <div class="section-title reveal">
+          <div>
+            <h2>Método editorial: diagnóstico, treino e reescrita</h2>
+            <p>Sem “fórmula mágica”. Você aprende a construir argumento, lapidar linguagem e dominar estrutura — com feedback aplicável na próxima versão.</p>
+          </div>
+          <div class="badge" aria-hidden="true">
+            <i></i> foco em técnica + autonomia
+          </div>
+        </div>
+
+        <div class="method">
+          <aside class="reveal">
+            <h3>O que a plataforma entrega</h3>
+            <ul class="checklist">
+              <li><span class="tick" aria-hidden="true"></span> Diagnóstico inicial (leitura + escrita) e objetivos claros.</li>
+              <li><span class="tick" aria-hidden="true"></span> Plano semanal com metas realistas e revisão de repertório.</li>
+              <li><span class="tick" aria-hidden="true"></span> Correções por critérios (estrutura, coesão, norma, autoria).</li>
+              <li><span class="tick" aria-hidden="true"></span> Banco de temas e exercícios guiados (introdução, desenvolvimento, conclusão).</li>
+              <li><span class="tick" aria-hidden="true"></span> Aulas ao vivo com foco no seu texto — linha a linha.</li>
+            </ul>
+          </aside>
+
+          <div class="steps">
+            <article class="step reveal">
+              <header>
+                <h3>1) Diagnóstico — onde você perde ponto (e por quê)</h3>
+              </header>
+              <p>
+                Em uma aula inicial, identificamos padrões: tese fraca, argumento circular, exemplos genéricos, vírgulas “aleatórias”,
+                e o que mais estiver travando sua nota e sua confiança.
+              </p>
+              <div class="meta" aria-label="Detalhes do diagnóstico">
+                <span class="chip"><i aria-hidden="true"></i> 50 min</span>
+                <span class="chip"><i aria-hidden="true"></i> mapa de prioridades</span>
+                <span class="chip"><i aria-hidden="true"></i> metas mensuráveis</span>
+              </div>
+            </article>
+
+            <article class="step reveal">
+              <header>
+                <h3>2) Técnica — estrutura + repertório + linguagem</h3>
+              </header>
+              <p>
+                Você aprende a construir parágrafos com função (tese, sustentação, exemplificação, síntese) e a usar conectivos sem “enchimento”.
+                Repertório vira ferramenta: pertinente, articulado e bem explicado.
+              </p>
+              <div class="meta" aria-label="Detalhes da técnica">
+                <span class="chip"><i aria-hidden="true"></i> modelos flexíveis</span>
+                <span class="chip"><i aria-hidden="true"></i> exercícios curtos</span>
+                <span class="chip"><i aria-hidden="true"></i> reescrita orientada</span>
+              </div>
+            </article>
+
+            <article class="step reveal">
+              <header>
+                <h3>3) Correção — comentários objetivos + próxima versão</h3>
+              </header>
+              <p>
+                A correção não é “nota e pronto”: você recebe observações acionáveis (o que mudar, como mudar e por que isso melhora).
+                Depois, reescreve com acompanhamento para consolidar técnica.
+              </p>
+              <div class="meta" aria-label="Detalhes da correção">
+                <span class="chip"><i aria-hidden="true"></i> rubrica clara</span>
+                <span class="chip"><i aria-hidden="true"></i> exemplos de melhoria</span>
+                <span class="chip"><i aria-hidden="true"></i> progresso visível</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="planos">
+      <div class="wrap">
+        <div class="section-title reveal">
+          <div>
+            <h2>Planos para diferentes rotinas (sem “pacote engessado”)</h2>
+            <p>Escolha o formato e ajuste a intensidade. A plataforma combina encontros, tarefas e correção para manter consistência.</p>
+          </div>
+          <div class="badge" aria-hidden="true"><i></i> online • ao vivo • material incluso</div>
+        </div>
+
+        <div class="plans reveal" role="region" aria-label="Tabela de planos">
+          <div class="plans-head">
+            <div>
+              <strong>O que você recebe</strong>
+              <p>Estrutura de acompanhamento pensada para redação e português (gramática aplicada ao texto).</p>
+            </div>
+            <div>
+              <strong>Essencial</strong>
+              <p>Para quem precisa de direção e correção consistente.</p>
+            </div>
+            <div>
+              <strong>Intensivo <span class="tag">mais procurado</span></strong>
+              <p>Para quem quer evolução rápida com prática e reescrita frequente.</p>
+            </div>
+          </div>
+
+          <div class="plans-body">
+            <div class="row">
+              <div class="cell feat">Aulas ao vivo (por mês)</div>
+              <div class="cell val"><b>4</b> encontros (1/semana)</div>
+              <div class="cell val"><b>8</b> encontros (2/semana)</div>
+
+              <div class="cell feat">Correções de redação</div>
+              <div class="cell val"><b>4</b> correções (com rubrica)</div>
+              <div class="cell val"><b>8</b> correções + reescrita guiada</div>
+
+              <div class="cell feat">Português aplicado</div>
+              <div class="cell val">Concordância, regência, pontuação no seu texto</div>
+              <div class="cell val">Treino + lista dirigida + revisão em aula</div>
+
+              <div class="cell feat">Banco de temas</div>
+              <div class="cell val">Seleção mensal + repertório sugerido</div>
+              <div class="cell val">Seleção mensal + repertório + exercícios por eixo</div>
+
+              <div class="cell feat">Suporte entre aulas</div>
+              <div class="cell val">Dúvidas pontuais (assíncrono)</div>
+              <div class="cell val">Dúvidas + check-ins rápidos (assíncrono)</div>
+
+              <div class="cell feat">Indicado para</div>
+              <div class="cell val">Base irregular, falta de método, procrastinação</div>
+              <div class="cell val">Meta alta, pouco tempo, necessidade de constância forte</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="smallnote reveal" style="margin-top:12px">
+          Observação: valores e meios de pagamento podem ser definidos por você (Pix, cartão, boleto). Esta página é um frontend de plataforma — pronto para integrar.
+        </p>
+      </div>
+    </section>
+
+    <section id="agendar">
+      <div class="wrap">
+        <div class="section-title reveal">
+          <div>
+            <h2>Agende sua aula e receba um plano inicial</h2>
+            <p>Preencha o formulário. Você recebe uma proposta de trilha: prioridade técnica, frequência e tema de treino.</p>
+          </div>
+          <div class="badge" aria-hidden="true"><i></i> resposta em até 24h úteis</div>
+        </div>
+
+        <div class="booking">
+          <div class="form reveal">
+            <div class="form-head">
+              <div>
+                <h3>Solicitação de aula</h3>
+                <p>Conte seu objetivo (ENEM, vestibular, concurso, escola, escrita profissional) e sua disponibilidade.</p>
+              </div>
+              <div class="pill"><b aria-hidden="true"></b> vagas limitadas</div>
+            </div>
+
+            <form id="bookingForm">
+              <div class="grid2">
+                <div>
+                  <label for="nome">Nome</label>
+                  <input id="nome" name="nome" autocomplete="name" placeholder="Seu nome" required />
+                </div>
+                <div>
+                  <label for="contato">WhatsApp ou e-mail</label>
+                  <input id="contato" name="contato" autocomplete="email" placeholder="(xx) xxxxx-xxxx ou email@dominio" required />
+                </div>
+              </div>
+
+              <div class="grid2">
+                <div>
+                  <label for="objetivo">Objetivo</label>
+                  <select id="objetivo" name="objetivo" required>
+                    <option value="" selected disabled>Selecione…</option>
+                    <option>ENEM (Redação)</option>
+                    <option>Vestibular (Redação)</option>
+                    <option>Concurso (Português)</option>
+                    <option>Escola (reforço)</option>
+                    <option>Escrita profissional</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="nivel">Nível atual</label>
+                  <select id="nivel" name="nivel" required>
+                    <option value="" selected disabled>Selecione…</option>
+                    <option>Preciso de base (gramática + estrutura)</option>
+                    <option>Intermediário (melhorar argumento e coesão)</option>
+                    <option>Avançado (refinar estilo e consistência)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid2">
+                <div>
+                  <label for="frequencia">Frequência desejada</label>
+                  <select id="frequencia" name="frequencia" required>
+                    <option value="" selected disabled>Selecione…</option>
+                    <option>1x por semana</option>
+                    <option>2x por semana</option>
+                    <option>Intensivo (curto prazo)</option>
+                    <option>Não sei — preciso de recomendação</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="turno">Turno</label>
+                  <select id="turno" name="turno" required>
+                    <option value="" selected disabled>Selecione…</option>
+                    <option>Manhã</option>
+                    <option>Tarde</option>
+                    <option>Noite</option>
+                    <option>Fim de semana</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="mensagem">Mensagem (opcional)</label>
+                <textarea id="mensagem" name="mensagem" placeholder="Ex.: minha maior dificuldade é concluir o texto / usar conectivos / pontuação..."></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn primary" type="submit">
+                  Enviar solicitação
+                  <span class="dot" aria-hidden="true"></span>
+                </button>
+                <button class="btn" type="button" id="copyMsgBtn">
+                  Copiar mensagem p/ WhatsApp
+                  <span class="dot" aria-hidden="true"></span>
+                </button>
+                <span class="smallnote" id="formStatus" role="status" aria-live="polite"></span>
+              </div>
+            </form>
+          </div>
+
+          <aside class="side reveal" id="faq" aria-label="Dúvidas frequentes">
+            <h3>Dúvidas frequentes</h3>
+            <div class="faq">
+              <details>
+                <summary>As aulas são só redação?</summary>
+                <p>Não. Português entra como ferramenta (pontuação, concordância, regência, crase, coesão) aplicado ao seu texto e ao seu objetivo.</p>
+              </details>
+              <details>
+                <summary>Como funciona a correção?</summary>
+                <p>Você recebe uma rubrica (critérios), comentários objetivos e um “próximo passo”. Depois, reescreve para consolidar.</p>
+              </details>
+              <details>
+                <summary>É para ENEM e vestibular?</summary>
+                <p>Sim. O método se adapta ao gênero e à banca: estrutura, repertório pertinente e proposta de intervenção (quando aplicável).</p>
+              </details>
+              <details>
+                <summary>Quanto tempo até ver melhora?</summary>
+                <p>Com consistência semanal, normalmente o aluno percebe evolução em clareza e estrutura nas primeiras 2–4 semanas.</p>
+              </details>
+            </div>
+
+            <p class="legal">
+              Esta página é um frontend demonstrativo. Para “virar plataforma”, basta integrar login, pagamentos e videochamada (ex.: Stripe + calendário + Meet).
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <div>
+            <a class="brand" href="#top">
+              <span class="mark" aria-hidden="true"></span>
+              <span class="name">
+                <strong>Letras & Letras</strong>
+                <span>Aulas particulares • Português e Redação</span>
+              </span>
+            </a>
+            <small>
+              Plataforma focada em escrita com método: diagnóstico, treino e reescrita. Ideal para ENEM, vestibulares e concursos — e para quem quer escrever com clareza no trabalho.
+            </small>
+            <div class="legal">© <span id="year"></span> Letras & Letras. Todos os direitos reservados.</div>
+          </div>
+
+          <div class="links" aria-label="Links de contato e navegação">
+            <a class="linkbtn" href="#agendar">Agendar</a>
+            <a class="linkbtn" href="#planos">Planos</a>
+            <a class="linkbtn" href="#metodo">Método</a>
+            <a class="linkbtn" href="#faq">Dúvidas</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+      });
+      mobileMenu.addEventListener('click', (e) => {
+        const a = e.target.closest('a');
+        if (a) {
+          mobileMenu.classList.remove('open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Reveal on scroll
+    const reveals = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('in');
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    // Tabs in demo panel
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    const panels = ['panel-clar','panel-coes','panel-norm'].map(id => document.getElementById(id));
+
+    function setTab(activeId){
+      tabs.forEach(t => t.setAttribute('aria-selected', String(t.id === activeId)));
+      panels.forEach(p => p.hidden = (p.getAttribute('aria-labelledby') !== activeId));
+    }
+    tabs.forEach(t => t.addEventListener('click', () => setTab(t.id)));
+
+    // Lightweight feedback heuristics (demo only)
+    const demoText = document.getElementById('demoText');
+    const scoreEl = document.getElementById('score');
+    const scoreLabel = document.getElementById('scoreLabel');
+    const demoFixBtn = document.getElementById('demoFixBtn');
+
+    const CONNECTIVES = [
+      "portanto","logo","assim","desse modo","dessa forma","por isso",
+      "contudo","entretanto","todavia","porém",
+      "além disso","ademais","outrossim",
+      "sobretudo","inclusive",
+      "pois","porque","uma vez que","já que",
+      "em síntese","em suma"
+    ];
+
+    function countWords(text){
+      const clean = text.trim().replace(/\s+/g,' ');
+      if (!clean) return 0;
+      return clean.split(' ').length;
+    }
+
+    function scoreText(text){
+      const t = text.trim();
+      if (!t) return {score: 0, notes: ["Escreva ao menos 2–3 frases para receber sugestões."]};
+
+      const words = countWords(t);
+      const sentences = t.split(/[.!?]+/).map(s => s.trim()).filter(Boolean).length;
+      const hasThesis = /(deveria|precisa|é necessário|é fundamental|é imprescindível|deve-se|urge)/i.test(t);
+      const hasExample = /(por exemplo|como|a exemplo de|segundo|dados|pesquisa|IBGE|OMS|ONU)/i.test(t);
+      const hasConnective = CONNECTIVES.some(c => new RegExp("\\b" + c.replace(/\s+/g,"\\s+") + "\\b","i").test(t));
+
+      const longSentence = t.split(/[.!?]+/).some(s => s.trim().split(/\s+/).length >= 26);
+      const vague = /\b(coisa|coisas|isso|aquilo|muito|muitos|muita|muitas)\b/i.test(t);
+
+      let score = 4; // base
+      if (words >= 35) score += 1;
+      if (sentences >= 2) score += 1;
+      if (hasThesis) score += 2;
+      if (hasConnective) score += 1;
+      if (hasExample) score += 1;
+      if (longSentence) score -= 1;
+      if (vague) score -= 1;
+
+      score = Math.max(0, Math.min(10, score));
+
+      const notes = [];
+      if (!hasThesis) notes.push("Deixe sua tese explícita (o que você defende?).");
+      if (!hasConnective) notes.push("Inclua um conectivo com função (contraste, causa, conclusão).");
+      if (!hasExample) notes.push("Acrescente um exemplo/dado/autor para sustentar a ideia.");
+      if (longSentence) notes.push("Divida períodos longos: uma ideia por frase melhora clareza.");
+      if (vague) notes.push("Troque termos vagos por referências específicas (quem? o quê? onde?).");
+      if (notes.length === 0) notes.push("Bom caminho: agora refine precisão lexical e evite repetições.");
+
+      return {score, notes};
+    }
+
+    function renderNotes(mode, notes){
+      const target = {
+        clar: document.getElementById('clarList'),
+        coes: document.getElementById('coesList'),
+        norm: document.getElementById('normList')
+      }[mode];
+
+      if (!target) return;
+      target.innerHTML = notes.map(n => `<li>${escapeHtml(n)}</li>`).join("");
+    }
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function updateDemo(){
+      const t = demoText.value;
+      const {score, notes} = scoreText(t);
+      scoreEl.textContent = score;
+      // Spread notes across tabs for feel
+      renderNotes('clar', notes.slice(0, 3));
+      renderNotes('coes', [
+        "Garanta encadeamento: tese → razão → evidência → conclusão parcial.",
+        "Use conectivos com parcimônia e precisão (evite 'além disso' em excesso).",
+        notes[0] || "Revise a progressão temática: cada frase deve avançar a ideia."
+      ]);
+      renderNotes('norm', [
+        "Releia procurando vírgulas entre sujeito e verbo — evite esse corte.",
+        "Verifique concordância em quantificadores (maioria de, parte de).",
+        notes[1] || "Se possível, simplifique: menos perífrases, mais verbos diretos."
+      ]);
+
+      scoreLabel.innerHTML = `Pontuação: <b>${score}</b>/10`;
+    }
+
+    demoText.addEventListener('input', () => {
+      window.clearTimeout(window.__demoTimer);
+      window.__demoTimer = window.setTimeout(updateDemo, 150);
+    });
+
+    demoFixBtn.addEventListener('click', () => {
+      const t = demoText.value.trim();
+      if (!t) {
+        demoText.focus();
+        return;
+      }
+      // Simple nudge: add a connective suggestion if absent
+      const hasConnective = CONNECTIVES.some(c => new RegExp("\\b" + c.replace(/\s+/g,"\\s+") + "\\b","i").test(t));
+      let improved = t;
+
+      if (!hasConnective) {
+        improved = t.replace(/([.!?])\s*$/, "") + ", portanto, " + "é preciso transformar essa ideia em ação concreta.";
+      } else {
+        improved = t.replace(/\b(muito|muitos|muita|muitas|coisa|coisas)\b/ig, "significativo(a)");
+      }
+
+      demoText.value = improved;
+      updateDemo();
+      demoText.focus();
+    });
+
+    // Form behavior (frontend)
+    const form = document.getElementById('bookingForm');
+    const statusEl = document.getElementById('formStatus');
+    const copyMsgBtn = document.getElementById('copyMsgBtn');
+
+    function buildMessage(){
+      const data = new FormData(form);
+      const nome = data.get('nome') || '';
+      const contato = data.get('contato') || '';
+      const objetivo = data.get('objetivo') || '';
+      const nivel = data.get('nivel') || '';
+      const frequencia = data.get('frequencia') || '';
+      const turno = data.get('turno') || '';
+      const mensagem = data.get('mensagem') || '';
+
+      return [
+        "Olá! Gostaria de agendar uma aula particular (Português/Redação).",
+        "",
+        `Nome: ${nome}`,
+        `Contato: ${contato}`,
+        `Objetivo: ${objetivo}`,
+        `Nível: ${nivel}`,
+        `Frequência: ${frequencia}`,
+        `Turno: ${turno}`,
+        mensagem ? `Observações: ${mensagem}` : ""
+      ].filter(Boolean).join("\n");
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      statusEl.textContent = "Enviado! Em um produto real, isso iria para seu sistema/CRM.";
+      statusEl.style.color = "rgba(15,107,95,.92)";
+      window.setTimeout(() => statusEl.textContent = "", 4200);
+      form.reset();
+    });
+
+    copyMsgBtn.addEventListener('click', async () => {
+      try{
+        const msg = buildMessage();
+        await navigator.clipboard.writeText(msg);
+        statusEl.textContent = "Mensagem copiada. Cole no WhatsApp e envie.";
+        statusEl.style.color = "rgba(27,27,26,.78)";
+        window.setTimeout(() => statusEl.textContent = "", 4200);
+      } catch (err){
+        statusEl.textContent = "Não foi possível copiar automaticamente. Selecione e copie manualmente.";
+        statusEl.style.color = "rgba(179,58,43,.92)";
+      }
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Initialize
+    updateDemo();
+  </script>
+</body>
+</html>
